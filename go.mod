@@ -1,4 +1,4 @@
-module github.com/bitly/go-simplejson
+module github.com/vanderw/go-simplejson
 
 go 1.13
 
