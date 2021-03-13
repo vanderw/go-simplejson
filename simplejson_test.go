@@ -246,3 +246,18 @@ func TestPathWillOverwriteExisting(t *testing.T) {
 	assert.Equal(t, nil, err)
 	assert.Equal(t, "bar", s)
 }
+
+func TestNewFrom(t *testing.T) {
+	data := []byte(`{"this":{"a":0.1,"b":"bb","c":"cc"}}`)
+	type sp struct {
+		This map[string]interface{}
+	}
+	var p sp
+	err := json.Unmarshal(data, &p)
+	assert.Equal(t, nil, err)
+
+	j := NewFrom(p.This)
+	c, err := j.Get("c").String()
+	assert.Equal(t, nil, err)
+	assert.Equal(t, "cc", c)
+}
